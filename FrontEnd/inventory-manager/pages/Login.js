@@ -1,11 +1,41 @@
+import axios from 'axios'
 import { FaFacebook, FaLinkedin, FaGoogle, FaRegEnvelope } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2'
+
+//  
 function Login() {
+    const [back, setBack] = useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem("accessToken")) {
+            router.push('/Home')
+            setBack(true)
+        }
+
+    }, [back])
     let router = useRouter()
-    const signInHandler = () => {
-        router.push('/SignUp')
+    const onSubmit = async (e) => {
+        e.preventDefault()
+        let response = await axios.post('http://127.0.0.1:8000/user/login', { email: e.target[0].value, password: e.target[1].value }).catch(() => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login error',
+                text: 'Email or password is not correct',
+                position: 'top-right'
+            })
+
+        })
+        if (response) {
+            localStorage.setItem("accessToken", response.data.access)
+            setBack(true)
+            // router.push('/Home')
+        }
     }
+
+
     return (
         <div className="flex flex-col justify-center min-h-screen py-2 bg-gray-100 item-center">
             <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
@@ -29,26 +59,27 @@ function Login() {
                                     <FaGoogle className='text-sm' />
                                 </a>
                             </div>
-                            <p className='my-3 text-gray-400'>or use your email account </p>
-                            <div className='flex flex-col items-center'>
-                                <div className='flex items-center w-64 p-2 mb-3 bg-gray-100'>
-                                    <FaRegEnvelope className='m-2 text-gray-400' />
-                                    <input type="email " name='email' placeholder='Email' className='flex-1 bg-gray-100'></input>
-                                </div>
-                                <div className='flex items-center w-64 p-2 bg-gray-100'>
-                                    <MdLockOutline className='m-2 text-gray-400' />
-                                    <input type="password" name='password' placeholder='Password' className='flex-1 bg-gray-100'></input>
-                                </div>
-                                <a href="\" className="inline-block px-12 py-2 mt-5 font-semibold border-2 border-green-600 rounded-full hover:bg-green-500 hover:text-white">Sign in</a>
 
-                            </div>
+                            <p className='text-gray-400 my-3'>or use your email account </p>
+                            <form className='flex flex-col items-center' onSubmit={onSubmit}>
+                                <div className='bg-gray-100 w-64 p-2 flex items-center mb-3'>
+                                    <FaRegEnvelope className='text-gray-400 m-2' />
+                                    <input type="email " name='email' placeholder='Email' className='bg-gray-100 flex-1 outline-none' required ></input>
+                                </div>
+                                <div className='bg-gray-100 w-64 p-2 flex items-center'>
+                                    <MdLockOutline className='text-gray-400 m-2' />
+                                    <input type="password" name='password' placeholder='Password' className='bg-gray-100 flex-1 outline-none' required></input>
+                                </div>
+                                <button type='submit' href="www.google.com" className="border-2 border-green-600 rounded-full px-12 py-2 inline-block font-semibold hover:bg-green-500 hover:text-white mt-5">Sign in</button>
+                            </form>
                         </div>
                     </div>
                     <div className="w-2/5 px-12 text-white bg-green-600 rounded-tr-2xl rounded-br-2xl py-36 ">
                         <h1 className="mb-2 text-3xl font-bold">Sign up Now!</h1>
                         <div className="inline-block w-10 mb-2 border-t-2 border-white"></div>
                         <p className="mb-10">Fill up personal inforamtion and start journey with us</p>
-                        <a onClick={signInHandler} className="inline-block px-12 py-2 font-semibold border-2 border-white rounded-full hover:bg-white hover:text-green-600">Sign Up</a>
+
+                        <a href='/SignUp' className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-600">Sign Up</a>
                     </div>
                 </div>
             </main >
