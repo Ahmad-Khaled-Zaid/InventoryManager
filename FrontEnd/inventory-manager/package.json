@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "sweetalert2": "^11.4.32",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
