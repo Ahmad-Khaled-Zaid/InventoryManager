@@ -10,7 +10,7 @@ export default function Search(props){
                 </div>
                 <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required/>
             </div>
-            <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button type="submit" class="inline-block text-green-700 mx-4 bg-white px-4 py-2 font-semibold border-2 border-green-700 rounded-lg hover:bg-green-600 hover:text-white">
                     <p> {props.name} </p>
                </button>
         </form>

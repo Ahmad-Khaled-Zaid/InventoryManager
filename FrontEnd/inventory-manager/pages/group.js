@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Search from '../components/search'
 import SideBar from '../components/sideeBar'
 import Table from '../components/table'
+// import { useState } from 'react';
 
 export default function User() {
   return (
@@ -13,13 +14,12 @@ export default function User() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header/>
-      <SideBar/>
+      <Header />
+      <SideBar />
       <main>
-        <Search name=" Add Group "/>
-        
-        
+        <Search name=" Add Group " />
+        <Table/>
       </main>
     </div>
-  )}
-    
+  )
+}
