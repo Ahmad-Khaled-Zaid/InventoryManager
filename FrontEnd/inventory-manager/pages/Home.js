@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import Layout from "../components/Layout"
 import { authHandler, logOut } from "../utils/functions"
+import { useRouter } from "next/router"
 const Home = ({ children }) => {
+    const router = useRouter()
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const checkUser = async () => {
@@ -10,6 +12,7 @@ const Home = ({ children }) => {
                 logOut()
                 return
             }
+            router.push('/Dash')
             setLoading(false)
         }
         checkUser()
