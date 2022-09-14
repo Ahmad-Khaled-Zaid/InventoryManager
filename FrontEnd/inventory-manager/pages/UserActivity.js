@@ -13,12 +13,13 @@ export default function User() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header/>
-      <SideBar/>
+      <Header />
+      <SideBar />
       <main>
-        <Search name=" Search "/>
-        
-        
+        <Search name=" Search " />
+
+
       </main>
     </div>
-  )}
+  )
+}
