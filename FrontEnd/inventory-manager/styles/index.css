@@ -15,12 +15,20 @@ html,body{
 }
 .adduser{
     position: absolute;
-    top:170px;
+    top:150px;
     right: 70px;
-    z-index: 2;
-    /* background-color: green; */
+    z-index: 1;
 }
 
-.adduser:hover{
-    background-color: g;
+.modal{
+    z-index: 2;
+}
+
+.search{
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+    position: absolute;
+    left: 310px;
+    top:150px
 }
