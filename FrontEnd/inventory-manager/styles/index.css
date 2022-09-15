@@ -13,3 +13,23 @@ html,body{
     left: 310px; 
     width: 75%;
 }
+.adduser{
+    position: absolute;
+    top:150px;
+    right: 70px;
+    z-index: 1;
+}
+
+.modal{
+    z-index: 2;
+}
+
+.search{
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+    position: absolute;
+    left: 310px;
+    top:150px
+}
+

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/Header'
-import Search from '../components/Search'
+// import Search from '../components/Search'
 import SideBar from '../components/SideBar'
 // import Table from '../components/table'
 
@@ -16,7 +16,7 @@ export default function User() {
       <Header/>
       <SideBar/>
       <main>
-        <Search name=" Add Shop "/>
+        {/* <Search name=" Add Shop "/> */}
         
         
       </main>
