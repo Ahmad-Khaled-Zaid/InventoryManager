@@ -3,17 +3,17 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Header from '../components/Header'
-import SideBar from '../components/sideeBar'
+import SideBar from '../components/SideBar'
 
 
 export default function Dashboard() {
-  const router = useRouter()
+  // const router = useRouter()
 
-  useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
-      router.push('/Login')
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!localStorage.getItem("accessToken")) {
+  //     router.push('/Login')
+  //   }
+  // }, [])
 
   return (
     <div className=''>

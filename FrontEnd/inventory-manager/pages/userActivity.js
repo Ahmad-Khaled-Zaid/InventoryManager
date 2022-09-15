@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Header from '../components/Header'
-import Search from '../components/search'
+// import Search from '../components/search'
 import SideBar from '../components/sideeBar'
-import Table from '../components/table'
+// import Table from '../components/table'
 
 export default function User() {
   return (
@@ -13,12 +13,13 @@ export default function User() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header/>
-      <SideBar/>
+      <Header />
+      <SideBar />
       <main>
-        <Search name=" Add Item"/>
-        
-        
+        {/* <Search name=" Search " /> */}
+
+
       </main>
     </div>
-  )}
+  )
+}

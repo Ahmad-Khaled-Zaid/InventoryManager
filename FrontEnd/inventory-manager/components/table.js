@@ -1,5 +1,11 @@
 
-export default function Table(props) {
+export default function Table(data) {
+
+  const url = 'https://jsonplaceholder.typicode.com/albums'
+  const { gittingData } = useState([]);
+
+  const fetcher = url => axios.get(url, config).then(res => gittingData = res.data)
+  const { data, error } = useSWR(url, fetcher)
   return (
     <div class="flex flex-col">
       <div class="overflow-x-auto ">
@@ -8,7 +14,7 @@ export default function Table(props) {
             <table class="max-w- text-center ml-72 ">
               <thead class="border-b bg-gray-50">
                 <tr>
-                  {Object.keys(props.data[0]).map((key) => (
+                  {Object.keys(data[0]).map((key) => (
                     <th>{key}</th>
                   ))}
                 </tr>
@@ -17,11 +23,11 @@ export default function Table(props) {
                 {data.map(object => {
                   return (
                     <tr>
-                {Object.values(object).map(value=>{
-                    return <td>{value}</td>
-                })}
-            </tr>
-                      )
+                      {Object.values(object).map(value => {
+                        return <td>{value}</td>
+                      })}
+                    </tr>
+                  )
                 })}
 
               </tbody>

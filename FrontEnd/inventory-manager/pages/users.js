@@ -1,11 +1,11 @@
 import axios from 'axios'
+import Modal from '../components/Modal'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import Modal from '../components/Modal'
-import Search from '../components/search'
-import SideBar from '../components/sideeBar'
+import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
+
 
 export default function User() {
   const submitForm = (e) => {
@@ -128,7 +128,7 @@ export default function User() {
       </div>
 
 
-      {/* <div className=' search flex justify-between mt-5'> */}
+      {/* <div className='flex justify-between mt-5 search'> */}
         <p> Users Page</p>
         <form class=" search flex items-center ">
           <label for="simple-search" class="sr-only">Search</label>
