@@ -5,7 +5,7 @@ export const getAuthToken = () => {
         return null
     }
     return {
-        headers: { Authorization: `Bearer ${accessToken}` }
+        headers: { Authorization: `Bearer ${accessToken}`}
     }
 }
 

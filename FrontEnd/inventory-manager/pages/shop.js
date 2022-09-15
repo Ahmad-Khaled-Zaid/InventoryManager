@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Header from '../components/Header'
-import Search from '../components/search'
-import SideBar from '../components/sideeBar'
-import Table from '../components/table'
+import Search from '../components/Search'
+import SideBar from '../components/SideBar'
+// import Table from '../components/table'
 
 export default function User() {
   return (

@@ -1,8 +1,8 @@
 
 export default function Table(data) {
-  
+
   const url = 'https://jsonplaceholder.typicode.com/albums'
-  const {gittingData} = useState([]);
+  const { gittingData } = useState([]);
 
   const fetcher = url => axios.get(url, config).then(res => gittingData = res.data)
   const { data, error } = useSWR(url, fetcher)
@@ -23,11 +23,11 @@ export default function Table(data) {
                 {data.map(object => {
                   return (
                     <tr>
-                {Object.values(object).map(value=>{
-                    return <td>{value}</td>
-                })}
-            </tr>
-                      )
+                      {Object.values(object).map(value => {
+                        return <td>{value}</td>
+                      })}
+                    </tr>
+                  )
                 })}
 
               </tbody>
