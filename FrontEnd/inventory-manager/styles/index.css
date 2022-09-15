@@ -13,3 +13,14 @@ html,body{
     left: 310px; 
     width: 75%;
 }
+.adduser{
+    position: absolute;
+    top:170px;
+    right: 70px;
+    z-index: 2;
+    /* background-color: green; */
+}
+
+.adduser:hover{
+    background-color: g;
+}
