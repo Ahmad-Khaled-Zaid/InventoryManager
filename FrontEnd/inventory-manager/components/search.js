@@ -1,9 +1,6 @@
 import { useState } from "react"
 
 export default function Search(props) {
-    const [query, setQuery] = useState("")
-    console.log(props.data.filter(ele => ele.email.includes(query)))
-
     return (
         <div className='flex justify-between mt-5'>
             <p> Users Page</p>

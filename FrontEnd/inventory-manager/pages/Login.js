@@ -19,19 +19,16 @@ function Login() {
     let router = useRouter()
     const onSubmit = async (e) => {
         e.preventDefault()
-        let response = await axios.post('http://127.0.0.1:8000/user/login', { email: e.target[0].value, password: e.target[1].value }).catch(() => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Login error',
-                text: 'Email or password is not correct',
-                position: 'top-right'
-            })
-
-        })
+        let response = await axios.post('http://127.0.0.1:8000/user/login', { email: e.target[0].value, password: e.target[1].value })
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: 'Login error',
+        //     text: 'Email or password is not correct',
+        //     position: 'top-right'
+        // })
         if (response) {
             localStorage.setItem("accessToken", response.data.access)
             setBack(true)
-            // router.push('/Home')
         }
     }
 
