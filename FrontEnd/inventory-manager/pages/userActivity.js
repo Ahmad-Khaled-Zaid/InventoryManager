@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/Header'
-import Search from '../components/search'
-import SideBar from '../components/sideeBar'
-import Table from '../components/table'
+import SideBar from '../components/SideBar'
 
 export default function User() {
   return (
@@ -16,9 +14,7 @@ export default function User() {
       <Header />
       <SideBar />
       <main>
-        <Search name=" Search " />
-
-
+        {/* <Search name=" Search " /> */}
       </main>
     </div>
   )

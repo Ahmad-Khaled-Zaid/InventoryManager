@@ -31,3 +31,34 @@ html,body{
     left: 310px;
     top:150px
 }
+.UsersTable_inv{
+    position: absolute;
+    top:150px;
+    left: 270px; 
+    width: 80%;
+}
+.search_inv{
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+    position: absolute;
+    left: 275px;
+    top:150px
+}
+
+.adduser_inv{
+    position: absolute;
+    top:150px;
+    right: 280px;
+    z-index: 1;
+}
+
+.adduser_inv_excel{
+    position: absolute;
+    top:150px;
+    right: 39px;
+    z-index: 1;
+    /* color: rgb(124, 85, 13); */
+    font-weight: bolder;
+}
+

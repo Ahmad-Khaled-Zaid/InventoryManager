@@ -1,14 +1,15 @@
 import axios from 'axios'
+import Modal from '../components/Modal'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import Modal from '../components/Modal'
-import SideBar from '../components/sideeBar'
+import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
+
 
 export default function User() {
   const submitForm = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log(e)
     axios.post("http://127.0.0.1:8000/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
   }
@@ -127,7 +128,7 @@ export default function User() {
       </div>
 
 
-      {/* <div className=' search flex justify-between mt-5'> */}
+      {/* <div className='flex justify-between mt-5 search'> */}
       <p> Users Page</p>
       <form class=" search flex items-center ">
         <label for="simple-search" class="sr-only">Search</label>
@@ -137,9 +138,9 @@ export default function User() {
           </div>
           <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
         </div>
-
+        {/* <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} /> */}
       </form>
-      {/* </div> */}
+
     </div >
   )
 }

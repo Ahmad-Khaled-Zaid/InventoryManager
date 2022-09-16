@@ -11,7 +11,7 @@ function Login() {
 
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
-            router.push('/Home')
+            router.push('/')
             setBack(true)
         }
 
@@ -57,17 +57,17 @@ function Login() {
                                 </a>
                             </div>
 
-                            <p className='text-gray-400 my-3'>or use your email account </p>
+                            <p className='my-3 text-gray-400'>or use your email account </p>
                             <form className='flex flex-col items-center' onSubmit={onSubmit}>
-                                <div className='bg-gray-100 w-64 p-2 flex items-center mb-3'>
-                                    <FaRegEnvelope className='text-gray-400 m-2' />
-                                    <input type="email " name='email' placeholder='Email' className='bg-gray-100 flex-1 outline-none' required ></input>
+                                <div className='flex items-center w-64 p-2 mb-3 bg-gray-100'>
+                                    <FaRegEnvelope className='m-2 text-gray-400' />
+                                    <input type="email " name='email' placeholder='Email' className='flex-1 bg-gray-100 outline-none' required ></input>
                                 </div>
-                                <div className='bg-gray-100 w-64 p-2 flex items-center'>
-                                    <MdLockOutline className='text-gray-400 m-2' />
-                                    <input type="password" name='password' placeholder='Password' className='bg-gray-100 flex-1 outline-none' required></input>
+                                <div className='flex items-center w-64 p-2 bg-gray-100'>
+                                    <MdLockOutline className='m-2 text-gray-400' />
+                                    <input type="password" name='password' placeholder='Password' className='flex-1 bg-gray-100 outline-none' required></input>
                                 </div>
-                                <button type='submit' href="www.google.com" className="border-2 border-green-600 rounded-full px-12 py-2 inline-block font-semibold hover:bg-green-500 hover:text-white mt-5">Sign in</button>
+                                <button type='submit' href="www.google.com" className="inline-block px-12 py-2 mt-5 font-semibold border-2 border-green-600 rounded-full hover:bg-green-500 hover:text-white">Sign in</button>
                             </form>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ function Login() {
                         <div className="inline-block w-10 mb-2 border-t-2 border-white"></div>
                         <p className="mb-10">Fill up personal inforamtion and start journey with us</p>
 
-                        <a href='/SignUp' className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-600">Sign Up</a>
+                        <a href='/SignUp' className="inline-block px-12 py-2 font-semibold border-2 border-white rounded-full hover:bg-white hover:text-green-600">Sign Up</a>
                     </div>
                 </div>
             </main >

@@ -9,7 +9,12 @@ export default function Header(props) {
                 Inventer
             </h1>
             <div>
-                <button onClick={logout} type="submit" className="border-2 border-white rounded-full px-8 py-2 inline-block font-semibold bg-green-500 text-white hover:bg-white hover:border-green-500 hover:text-green-500 ">
+                {/* <button type="submit" class="inline-block px-4 py-2 font-semibold border-2 border-white rounded-full hover:bg-white hover:text-green-600 mx-3">
+                    <p>New Invoice</p>
+                </button>
+                <button type="submit" class="inline-block px-4 py-2 font-semibold border-2 border-white rounded-full hover:bg-white hover:text-green-600">
+                    <p>Admin</p> */}
+                <button onClick={logout} type="submit" className="inline-block px-8 py-2 font-semibold text-white bg-green-500 border-2 border-white rounded-full hover:bg-white hover:border-green-500 hover:text-green-500 ">
                     <p>Logout</p>
                 </button>
             </div>
