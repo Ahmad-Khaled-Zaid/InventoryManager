@@ -56,7 +56,7 @@ export default function UserActivity() {
             </thead>
             <tbody>
               {data.map((ele) => {
-                if (ele.name.toLowerCase().includes(query)) {
+                if (ele.preformed_by.toLowerCase().includes(query)) {
                   return (
                     <tr key={ele.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                       <td class="p-4 w-4">
