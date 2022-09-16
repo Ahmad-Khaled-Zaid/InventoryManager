@@ -9,7 +9,7 @@ import { getAuthToken } from '../utils/functions'
 
 export default function Group() {
   const submitForm = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log(e)
     axios.post("http://127.0.0.1:8000/app/group", { name: e.target[0].value, belongs_to: e.target[1].value }, getAuthToken())
     console.log(data)
@@ -75,7 +75,7 @@ export default function Group() {
             </thead>
             <tbody>
               {data.map((ele) => {
-                if (ele.fullname.toLowerCase().includes(query)) {
+                if (ele.name.toLowerCase().includes(query)) {
                   return (
                     <tr key={ele.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                       <td class="p-4 w-4">

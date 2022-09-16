@@ -7,13 +7,13 @@ import SideBar from '../components/SideBar'
 
 
 export default function Dashboard() {
-  // const router = useRouter()
+  const router = useRouter()
 
-  // useEffect(() => {
-  //   if (!localStorage.getItem("accessToken")) {
-  //     router.push('/Login')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      router.push('/Login')
+    }
+  }, [])
 
   return (
     <div className=''>
