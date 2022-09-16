@@ -7,10 +7,10 @@ import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
 
 export default function UserActivity() {
-  
+
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://inventer-v1.herokuapp.com/user/activities-log', headers)
+    let response = await axios.get('http://localhost:8000/user/activities-log', headers)
     setData(response.data.results)
 
   }
@@ -19,10 +19,8 @@ export default function UserActivity() {
     data.length <= 0 && usersData()
   }, [data])
 
-
   const [query, setQuery] = useState("")
   console.log(query)
-
 
   return (
     <div >
@@ -36,7 +34,7 @@ export default function UserActivity() {
       <Header />
       <SideBar />
       <main>
-       
+
         <div class="overflow-x-auto relative  sm:rounded-lg UsersTable">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -46,22 +44,19 @@ export default function UserActivity() {
                   </div>
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
-                  Name
+                  Action
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
-                  Created By
+                  Preformed By
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
                   Created At
-                </th>
-                <th scope="col" class="py-3 px-6 text-white">
-                  Actions
                 </th>
               </tr>
             </thead>
             <tbody>
               {data.map((ele) => {
-                if (ele.fullname.toLowerCase().includes(query)) {
+                if (ele.preformed_by.toLowerCase().includes(query)) {
                   return (
                     <tr key={ele.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                       <td class="p-4 w-4">
@@ -70,17 +65,13 @@ export default function UserActivity() {
                         </div>
                       </td>
                       <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {ele.name}
+                        {ele.action}
                       </th>
                       <td class="py-4 px-6">
-                        {ele.created_by}
+                        {ele.preformed_by}
                       </td>
                       <td class="py-4 px-6">
                         {ele.created_at}
-                      </td>
-                      <td class="flex items-center py-4 px-6 space-x-3">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
                       </td>
                     </tr>
                   )
@@ -89,7 +80,7 @@ export default function UserActivity() {
 
             </tbody>
           </table>
-          
+
         </div>
 
 
