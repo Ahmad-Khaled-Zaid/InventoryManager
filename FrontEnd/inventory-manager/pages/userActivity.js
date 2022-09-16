@@ -19,7 +19,8 @@ export default function UserActivity() {
     data.length <= 0 && usersData()
   }, [data])
 
-
+  const [query, setQuery] = useState("")
+  console.log(query)
 
   return (
     <div >
