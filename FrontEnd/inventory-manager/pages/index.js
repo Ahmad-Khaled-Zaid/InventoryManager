@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import SummaryData from '../components/Dashboard/SummaryData'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
-
 
 export default function Dashboard() {
   const router = useRouter()
@@ -27,19 +27,7 @@ export default function Dashboard() {
       <SideBar />
 
       <main className='justify-center py-2 bg-gray-100'>
-
-
-        <div className='flex justify-between p-2 m-2 ml-64 bg-gray-100 rounded-lg'>
-
-          <div className='py-5 m-1 bg-white rounded-lg px-7'>
-            <p> Total Items </p>
-            <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-          </div>
-          <div className='py-5 m-1 bg-white rounded-lg px-7'> Total Shops </div>
-          <div className='py-5 m-1 bg-white rounded-lg px-7'> Total Groups </div>
-          <div className='py-5 m-1 bg-white rounded-lg px-7'> Total Users </div>
-        </div>
-
+        <SummaryData/>
         <div className='flex justify-between ml-64'>
           <div className='p-5 bg-white rounded-lg '>
             <p className='mb-3 font-bold'> Top Selling products</p>
