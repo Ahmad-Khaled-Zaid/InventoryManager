@@ -7,7 +7,7 @@ import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
 
 
-export default function User() {
+export default function Shop() {
   const submitForm = (e) => {
     e.preventDefault()
     console.log(e)
