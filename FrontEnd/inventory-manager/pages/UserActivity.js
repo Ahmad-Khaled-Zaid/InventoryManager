@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Modal from '../components/Modal'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Header from '../components/Header'

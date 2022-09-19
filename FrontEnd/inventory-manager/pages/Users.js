@@ -9,7 +9,6 @@ import { getAuthToken } from '../utils/functions'
 
 export default function User() {
   const submitForm = (e) => {
-    e.preventDefault()
     console.log(e)
     axios.post("http://127.0.0.1:8000/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
   }
