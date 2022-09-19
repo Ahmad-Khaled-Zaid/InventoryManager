@@ -49,7 +49,7 @@ html,body{
 .adduser_inv{
     position: absolute;
     top:150px;
-    right: 280px;
+    right: 40px;
     z-index: 1;
 }
 
@@ -61,4 +61,23 @@ html,body{
     /* color: rgb(124, 85, 13); */
     font-weight: bolder;
 }
+
+  /* input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    /* -webkit-appearance: none; */
+    /* margin: 0; */
+  /* } */ */
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+  .counter{
+    margin-top: 10px;
+    font-size: 20px;
+    color: rgb(220, 0, 0);
+  }
 
