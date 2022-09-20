@@ -9,6 +9,7 @@ import { getAuthToken } from '../utils/functions'
 
 export default function Group() {
   const submitForm = (e) => {
+    // e.preventDefault()
     console.log(e)
     axios.post("http://127.0.0.1:8000/app/group", { name: e.target[0].value, belongs_to: e.target[1].value }, getAuthToken())
     console.log(data)

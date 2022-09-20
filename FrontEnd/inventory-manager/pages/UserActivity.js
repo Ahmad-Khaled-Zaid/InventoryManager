@@ -55,7 +55,8 @@ export default function UserActivity() {
             </thead>
             <tbody>
               {data.map((ele) => {
-                if (ele.fullname.toLowerCase().includes(query)) {
+
+                if (ele.email.toLowerCase().includes(query)) {
                   return (
                     <tr key={ele.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                       <td class="p-4 w-4">
@@ -67,7 +68,7 @@ export default function UserActivity() {
                         {ele.action}
                       </th>
                       <td class="py-4 px-6">
-                        {ele.preformed_by}
+                        {ele.email}
                       </td>
                       <td class="py-4 px-6">
                         {ele.created_at}

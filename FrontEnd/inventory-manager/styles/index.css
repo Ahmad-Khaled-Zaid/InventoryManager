@@ -4,7 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;900&display=swap');
 html,body{
     font-family: 'Source Sans Pro', sans-serif;
-    /* position: relative; */
 }
 
 .UsersTable{
@@ -32,4 +31,53 @@ html,body{
     left: 310px;
     top:150px
 }
+.UsersTable_inv{
+    position: absolute;
+    top:150px;
+    left: 270px; 
+    width: 80%;
+}
+.search_inv{
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+    position: absolute;
+    left: 275px;
+    top:150px
+}
+
+.adduser_inv{
+    position: absolute;
+    top:150px;
+    right: 40px;
+    z-index: 1;
+}
+
+.adduser_inv_excel{
+    position: absolute;
+    top:150px;
+    right: 39px;
+    z-index: 1;
+    /* color: rgb(124, 85, 13); */
+    font-weight: bolder;
+}
+
+  /* input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    /* -webkit-appearance: none; */
+    /* margin: 0; */
+  /* } */ */
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+  .counter{
+    margin-top: 10px;
+    font-size: 20px;
+    color: rgb(220, 0, 0);
+  }
 

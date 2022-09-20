@@ -76,7 +76,7 @@ export default function TopSell() {
     }
 
     return (
-        <div className="flex flex-wrap justify-between ">
+        <div className="flex flex-wrap ">
             {
                 data.map((item, index) =>
                     <div key={index} className="p-3 m-6 bg-gray-100 rounded-lg shadow-md hover:bg-green-400 hover:text-white">
