@@ -30,7 +30,7 @@ export default function Dashboard() {
 
       <main className='justify-center py-2 bg-gray-100'>
         <SummaryData />
-        <div className='flex ml-64 bg-gray-100 max-w md:w-fit lg:w-fit'>
+        <div className='flex ml-64 bg-gray-100   justify-between'>
           <div className='p-4 bg-white rounded-lg shadow-md '>
             <p className='font-sans text-lg font-semibold text-gray-500'>Top Selling Items</p>
             <TopSell />

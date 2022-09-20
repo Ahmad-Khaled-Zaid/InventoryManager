@@ -8,7 +8,6 @@ import { getAuthToken } from '../utils/functions'
 
 
 export default function inventory() {
-
   const [data, setData] = useState([])
   const [groups, setGroups] = useState([])
   let [counter, setCounter] = useState(0);
@@ -110,14 +109,15 @@ export default function inventory() {
                       <td class="py-4 px-6">
                         <div class="custom-number-input h-10 w-32">
 
-                          <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                          <form onSubmit={ } class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                             <input type="number" placeholder="0" class="focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number"></input>
-                            <button class="bg-green-600 text-white hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded cursor-pointer ml-2">
+                            <button type='submit' class="bg-green-600 text-white hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded cursor-pointer ml-2">
                               <span class="m-auto font-bold py-2 px-5">Add</span>
                             </button>
-                          </div>
+                          </form>
                         </div>
                       </td>
+
 
                     </tr>
                   )
@@ -130,7 +130,7 @@ export default function inventory() {
         </div>
 
 
-        
+
         <form class=" search_inv flex items-center ">
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative ">

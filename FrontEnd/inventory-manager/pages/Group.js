@@ -11,7 +11,7 @@ export default function Group() {
   const submitForm = (e) => {
     // e.preventDefault()
     console.log(e)
-    axios.post("http://inventer-ms.herokuapp.com/app/group", { name: e.target[0].value, belongs_to: e.target[1].value }, getAuthToken())
+    axios.post("http://inventer-ms.herokuapp.com/app/group", { name: e.target[0].value }, getAuthToken())
     console.log(data)
 
   }
@@ -20,7 +20,6 @@ export default function Group() {
     const headers = getAuthToken()
     let response = await axios.get('http://inventer-ms.herokuapp.com/app/group', headers)
     setData(response.data.results)
-
   }
   const [data, setData] = useState([])
   useEffect(() => {
@@ -60,17 +59,16 @@ export default function Group() {
                   Name
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
-                  Belongs To
-                </th>
-                <th scope="col" class="py-3 px-6 text-white">
                   Total Items
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
+                  Created By
+                </th>
+
+                <th scope="col" class="py-3 px-6 text-white">
                   Created At
                 </th>
-                <th scope="col" class="py-3 px-6 text-white">
-                  Actions
-                </th>
+
               </tr>
             </thead>
             <tbody>
@@ -87,18 +85,15 @@ export default function Group() {
                         {ele.name}
                       </th>
                       <td class="py-4 px-6">
-                        {ele.belongs_to}
+                        {ele.total_items}
                       </td>
                       <td class="py-4 px-6">
-                        {ele.total_items}
+                        {ele.created_by.fullname}
                       </td>
                       <td class="py-4 px-6">
                         {ele.created_at}
                       </td>
-                      <td class="flex items-center py-4 px-6 space-x-3">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-                      </td>
+
                     </tr>
                   )
                 }

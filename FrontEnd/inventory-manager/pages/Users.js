@@ -51,16 +51,19 @@ export default function User() {
                 </div>
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Email
+                Id
               </th>
               <th scope="col" class="py-3 px-6 text-white">
                 Name
               </th>
               <th scope="col" class="py-3 px-6 text-white">
+                Email
+              </th>
+              <th scope="col" class="py-3 px-6 text-white">
                 Role
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Actions
+                Created At
               </th>
             </tr>
           </thead>
@@ -75,18 +78,22 @@ export default function User() {
                       </div>
                     </td>
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {ele.email}
+                      {ele.id}
                     </th>
                     <td class="py-4 px-6">
                       {ele.fullname}
                     </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {ele.email}
+                    </th>
+
                     <td class="py-4 px-6">
                       {ele.role}
                     </td>
-                    <td class="flex items-center py-4 px-6 space-x-3">
-                      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                      <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                    <td class="py-4 px-6">
+                      {ele.created_at}
                     </td>
+
                   </tr>
                 )
               }
@@ -107,7 +114,7 @@ export default function User() {
 
                 <label for="Role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 mt-5 ">Role</label>
                 <select name="Role" id="Role" class=" rounded px-20 py-2  border-2">
-                  <option value="Admin">Admin</option>
+                  {/* <option value="Admin">Admin</option> */}
                   <option value="sale">Sale</option>
                   <option value="creator">creator</option>
                 </select>
