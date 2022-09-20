@@ -18,7 +18,7 @@ function Login() {
     let router = useRouter()
     const onSubmit = async (e) => {
         e.preventDefault()
-        let response = await axios.post('http://inventer-ms.herokuapp.com/user/login/', { email: e.target[0].value, password: e.target[1].value })
+        let response = await axios.post('http://127.0.0.1:8000/user/login/', { email: e.target[0].value, password: e.target[1].value })
 
         if (response) {
             localStorage.setItem("accessToken", response.data.access)
