@@ -2,12 +2,10 @@ import { useState } from "react"
 
 export default function Search(props) {
     const [query, setQuery] = useState("")
-    // console.log(props.data.filter(ele => ele.email.includes(query)))
-
+    
     return (
         <div className='flex justify-between mt-5'>
-            <p> Users Page</p>
-            <form class="flex items-center mr-20 mt-10">
+            <form class=" search_inv flex items-center ">
                 <label for="simple-search" class="sr-only">Search</label>
                 <div class="relative ">
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -15,7 +13,6 @@ export default function Search(props) {
                     </div>
                     <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
                 </div>
-
             </form>
         </div>
     )

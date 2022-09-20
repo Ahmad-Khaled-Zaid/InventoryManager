@@ -36,7 +36,8 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-
+node_modules/
+.node_modules
 # Unit test / coverage reports
 htmlcov/
 .tox/

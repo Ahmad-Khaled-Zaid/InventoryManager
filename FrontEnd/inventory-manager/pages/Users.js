@@ -7,31 +7,30 @@ import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
 
 
-export default function Shop() {
+export default function User() {
   const submitForm = (e) => {
-    e.preventDefault()
-    console.log(e)
-    axios.post("http://127.0.0.1:8000/app/shop", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
+    axios.post("http://inventer-ms.herokuapp.com/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://localhost:8000/app/shop', headers)
+    let response = await axios.get('http://inventer-ms.herokuapp.com/user/users', headers)
     setData(response.data.results)
   }
   const [data, setData] = useState([])
   useEffect(() => {
     data.length <= 0 && usersData()
-    console.log(data)
-
   }, [data])
 
 
   const [query, setQuery] = useState("")
+  console.log(query)
+
+
   return (
     <div >
       <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
-        Add Shop
+        Add user
       </button>
 
       <Head>
@@ -52,19 +51,13 @@ export default function Shop() {
                 </div>
               </th>
               <th scope="col" class="py-3 px-6 text-white">
+                Email
+              </th>
+              <th scope="col" class="py-3 px-6 text-white">
                 Name
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Create By
-              </th>
-              <th scope="col" class="py-3 px-6 text-white">
-                Created On
-              </th>
-              <th scope="col" class="py-3 px-6 text-white">
-                Total Sales(Price)
-              </th>
-              <th scope="col" class="py-3 px-6 text-white">
-                Total Sales(Count)
+                Role
               </th>
               <th scope="col" class="py-3 px-6 text-white">
                 Actions
@@ -73,7 +66,7 @@ export default function Shop() {
           </thead>
           <tbody>
             {data.map((ele) => {
-              if (ele.name.toLowerCase().includes(query)) {
+              if (ele.fullname.toLowerCase().includes(query)) {
                 return (
                   <tr key={ele.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="p-4 w-4">
@@ -82,16 +75,10 @@ export default function Shop() {
                       </div>
                     </td>
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {ele.name}
+                      {ele.email}
                     </th>
                     <td class="py-4 px-6">
-                      {ele.created_by}
-                    </td>
-                    <td class="py-4 px-6">
-                      {ele.created_at}
-                    </td>
-                    <td class="py-4 px-6">
-                      {ele.role}
+                      {ele.fullname}
                     </td>
                     <td class="py-4 px-6">
                       {ele.role}
@@ -129,7 +116,7 @@ export default function Shop() {
                 <div class="flex items-start">
                 </div>
               </div>
-              <button type="submit" class="w-full text-white bg-green-500   hover:border-green-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add Shop</button>
+              <button type="submit" class="w-full text-white bg-green-500   hover:border-green-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add User</button>
               <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
               </div>
             </form>
@@ -139,6 +126,7 @@ export default function Shop() {
       </div>
 
 
+      {/* <div className='flex justify-between mt-5 search'> */}
       <p> Users Page</p>
       <form class=" search flex items-center ">
         <label for="simple-search" class="sr-only">Search</label>
@@ -148,6 +136,7 @@ export default function Shop() {
           </div>
           <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
         </div>
+        {/* <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} /> */}
       </form>
 
     </div >

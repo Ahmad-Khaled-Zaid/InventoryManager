@@ -11,14 +11,14 @@ export default function Group() {
   const submitForm = (e) => {
     // e.preventDefault()
     console.log(e)
-    axios.post("http://127.0.0.1:8000/app/group", { name: e.target[0].value, belongs_to: e.target[1].value }, getAuthToken())
+    axios.post("http://inventer-ms.herokuapp.com/app/group", { name: e.target[0].value, belongs_to: e.target[1].value }, getAuthToken())
     console.log(data)
 
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://localhost:8000/app/group', headers)
+    let response = await axios.get('http://inventer-ms.herokuapp.com/app/group', headers)
     setData(response.data.results)
 
   }

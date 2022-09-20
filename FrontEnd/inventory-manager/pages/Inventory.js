@@ -5,21 +5,23 @@ import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
+
+
 export default function inventory() {
-  
   const [data, setData] = useState([])
   const [groups, setGroups] = useState([])
-  let [counter, setCounter] = useState(0);
   let itemGroups = groups.map(ele => ele.name)
   const submitForm = async (e) => {
+    // e.preventDefault()
+    // console.log(e)
     let x = itemGroups.indexOf(e.target[2].value) + 1
-    axios.post("http://127.0.0.1:8000/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value }, getAuthToken())
+    axios.post("http://inventer-ms.herokuapp.com/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value, photo: e.target[4].value }, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://localhost:8000/app/inventory', headers)
-    let response2 = await axios.get('http://localhost:8000/app/group', headers)
+    let response = await axios.get('http://inventer-ms.herokuapp.com/app/inventory', headers)
+    let response2 = await axios.get('http://inventer-ms.herokuapp.com/app/group', headers)
 
     setData(response.data.results)
     setGroups(response2.data.results)
@@ -33,10 +35,12 @@ export default function inventory() {
   const [query, setQuery] = useState("")
   return (
     <div >
-      <a href="/NewInvoice" class=" adduser_inv bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
-        New Invoice
-      </a>
-
+      <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
+        Add Item
+      </button>
+      {/* <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv_excel bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
+        Add Item (Excel)
+      </button> */}
 
       <Head>
         <title>Inventer</title>
@@ -48,7 +52,7 @@ export default function inventory() {
       <main>
       </main>
       <div class="overflow-x-auto relative  sm:rounded-lg UsersTable_inv ">
-        <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border "  >
+        <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border mr-4"  >
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr class="bg-green-500">
               <th scope="col" class="p-4 ">
@@ -64,18 +68,25 @@ export default function inventory() {
               <th scope="col" class="py-3 px-6 text-white">
                 Item Name
               </th>
-
+              <th scope="col" class="py-3 px-6 text-white">
+                Item Group
+              </th>
               <th scope="col" class="py-3 px-6 text-white">
                 Price
               </th>
-
+              <th scope="col" class="py-3 px-6 text-white">
+                Total
+              </th>
               <th scope="col" class="py-3 px-6 text-white">
                 Remaining
               </th>
-
               <th scope="col" class="py-3 px-6 text-white">
-                Actions
+                Added On
               </th>
+              <th scope="col" class="py-3 px-6 text-white">
+                Added By
+              </th>
+              
             </tr>
           </thead>
           <tbody>
@@ -92,7 +103,7 @@ export default function inventory() {
                       {ele.code}
                     </th>
                     <td class="py-4 px-6">
-                      N/A
+                      <img className='items-center rounded-lg shadow-md' width={50} src={ele.photo} />
                     </td>
                     <td class="py-4 px-6">
                       {ele.name}
@@ -104,20 +115,15 @@ export default function inventory() {
                       {ele.price}$
                     </td>
                     <td class="py-4 px-6">
-                      <div class="custom-number-input h-10 w-32">
-
-                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                          <button data-action="decrement" class=" bg-green-200 text-green-500 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded cursor-pointer outline-none mr-2" onClick={() => setCounter(counter - 1)}>
-                            <span class="m-auto text-2xl font-thin">−</span>
-                          </button>
-                          <p class="counter">{counter}</p>
-                          {/* <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input> */}
-                          <button data-action="increment" class="bg-green-200 text-green-500 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded cursor-pointer ml-2" onClick={() => setCounter(counter + 1)}>
-                            <span class="m-auto text-2xl font-thin">+</span>
-                          </button>
-                        </div>
-                      </div>
+                      {ele.total}
                     </td>
+                    <td class="py-4 px-6">
+                      {ele.remaining}
+                    </td>
+                    <td class="py-4 px-6">
+                      {ele.created_at}
+                    </td>
+                    {ele.created_by ? <td>{ele.created_by['fullname']}</td> : <td>NA</td>}
 
                   </tr>
                 )
@@ -147,6 +153,10 @@ export default function inventory() {
                 </select>
                 <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Item Price</label>
                 <input name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+
+                <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Photo</label>
+                <input name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+
 
               </div>
               <div class="flex justify-between">
