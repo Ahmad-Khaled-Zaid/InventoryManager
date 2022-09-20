@@ -15,13 +15,13 @@ export default function inventory() {
     // e.preventDefault()
     // console.log(e)
     let x = itemGroups.indexOf(e.target[2].value) + 1
-    axios.post("http://127.0.0.1:8000/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value }, getAuthToken())
+    axios.post("http://inventer-ms.herokuapp.com/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value, photo: e.target[4].value }, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://localhost:8000/app/inventory', headers)
-    let response2 = await axios.get('http://localhost:8000/app/group', headers)
+    let response = await axios.get('http://inventer-ms.herokuapp.com/app/inventory', headers)
+    let response2 = await axios.get('http://inventer-ms.herokuapp.com/app/group', headers)
 
     setData(response.data.results)
     setGroups(response2.data.results)
@@ -38,9 +38,9 @@ export default function inventory() {
       <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
         Add Item
       </button>
-      <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv_excel bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
+      {/* <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv_excel bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
         Add Item (Excel)
-      </button>
+      </button> */}
 
       <Head>
         <title>Inventer</title>
@@ -52,7 +52,7 @@ export default function inventory() {
       <main>
       </main>
       <div class="overflow-x-auto relative  sm:rounded-lg UsersTable_inv ">
-        <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border "  >
+        <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border mr-4"  >
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr class="bg-green-500">
               <th scope="col" class="p-4 ">
@@ -86,9 +86,7 @@ export default function inventory() {
               <th scope="col" class="py-3 px-6 text-white">
                 Added By
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
-                Actions
-              </th>
+              
             </tr>
           </thead>
           <tbody>
@@ -105,7 +103,7 @@ export default function inventory() {
                       {ele.code}
                     </th>
                     <td class="py-4 px-6">
-                      N/A
+                      <img className='items-center rounded-lg shadow-md' width={50} src={ele.photo} />
                     </td>
                     <td class="py-4 px-6">
                       {ele.name}
@@ -127,10 +125,6 @@ export default function inventory() {
                     </td>
                     {ele.created_by ? <td>{ele.created_by['fullname']}</td> : <td>NA</td>}
 
-                    <td class="flex items-center py-4 px-6 space-x-3">
-                      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                      <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-                    </td>
                   </tr>
                 )
               }
@@ -159,6 +153,10 @@ export default function inventory() {
                 </select>
                 <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Item Price</label>
                 <input name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+
+                <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Photo</label>
+                <input name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+
 
               </div>
               <div class="flex justify-between">

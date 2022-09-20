@@ -9,7 +9,7 @@ export default function UserActivity() {
 
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://localhost:8000/user/activities-log', headers)
+    let response = await axios.get('http://inventer-ms.herokuapp.com/user/activities-log', headers)
     setData(response.data.results)
 
   }
@@ -68,7 +68,7 @@ export default function UserActivity() {
                         {ele.action}
                       </th>
                       <td class="py-4 px-6">
-                        {ele.email}
+                        {ele.fullname}
                       </td>
                       <td class="py-4 px-6">
                         {ele.created_at}
@@ -85,7 +85,7 @@ export default function UserActivity() {
 
 
         {/* <div className='flex justify-between mt-5 search'> */}
-        <p> Users Page</p>
+       
         <form class=" search flex items-center ">
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative ">

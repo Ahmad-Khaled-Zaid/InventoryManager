@@ -5,23 +5,26 @@ import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
-
+import { v4 as uuidv4 } from 'uuid'
 
 export default function Shop() {
+  const [data, setData] = useState([])
   const submitForm = (e) => {
     console.log(e)
-    axios.post("http://127.0.0.1:8000/app/shop", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
+    axios.post("http://inventer-ms.herokuapp.com/app/shop", { name: e.target[0].value, created_by_fullname: e.target[1].value}, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://127.0.0.1:8000/app/sales-by-shop', headers)
-    setData(response.data.results)
+    let response = await axios.get('http://inventer-ms.herokuapp.com/app/sales-by-shop', headers)
+    console.log(response)
+    setData(response.data)
+    console.log(data)
   }
-  const [data, setData] = useState([])
+
   useEffect(() => {
     data.length <= 0 && usersData()
-    console.log(data)
+    // console.log(data)
 
   }, [data])
 
@@ -51,6 +54,9 @@ export default function Shop() {
                 </div>
               </th>
               <th scope="col" class="py-3 px-6 text-white">
+                Id
+              </th>
+              <th scope="col" class="py-3 px-6 text-white">
                 Name
               </th>
               <th scope="col" class="py-3 px-6 text-white">
@@ -60,11 +66,9 @@ export default function Shop() {
                 Created On
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Total Sales(Price)
+                Total Sales
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
-                Actions
-              </th>
+
             </tr>
           </thead>
           <tbody>
@@ -78,8 +82,11 @@ export default function Shop() {
                       </div>
                     </td>
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {ele.name}
+                      1001{ele.id}
                     </th>
+                    <td class="py-4 px-6">
+                      {ele.name}
+                    </td>
                     <td class="py-4 px-6">
                       {ele.created_by.fullname}
                     </td>
@@ -89,10 +96,7 @@ export default function Shop() {
                     <td class="py-4 px-6">
                       {ele.amount_total}
                     </td>
-                    <td class="flex items-center py-4 px-6 space-x-3">
-                      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                      <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-                    </td>
+
                   </tr>
                 )
               }
@@ -104,19 +108,13 @@ export default function Shop() {
           <div class="py-6 px-6 lg:px-8">
             <form class="space-y-6" onSubmit={submitForm}>
               <div>
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Shop's Name</label>
+                <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
               </div>
               <div>
-                <label for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
+                {/* <label for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Added By </label>
                 <input type="Name" name="Name" id="Name" placeholder="eg. Ahmad Alnabale" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-
-                <label for="Role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 mt-5 ">Role</label>
-                <select name="Role" id="Role" class=" rounded px-20 py-2  border-2">
-                  <option value="Admin">Admin</option>
-                  <option value="sale">Sale</option>
-                  <option value="creator">creator</option>
-                </select>
+               */}
               </div>
               <div class="flex justify-between">
                 <div class="flex items-start">

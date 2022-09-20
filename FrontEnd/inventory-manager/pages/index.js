@@ -42,7 +42,7 @@ export default function Dashboard() {
               <PieChart/>
             </div>
             <div>
-              
+              <p> Pr </p>
             </div>
           </div>
 

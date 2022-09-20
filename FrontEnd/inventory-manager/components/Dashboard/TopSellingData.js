@@ -62,7 +62,7 @@ export default function TopSell() {
 
     const getdata = async () => {
         let headers = getAuthToken()
-        let response = await axios.get('http://localhost:8000/app/top-selling', headers)
+        let response = await axios.get('http://inventer-ms.herokuapp.com/app/top-selling', headers)
         if (response) {
             const result = response.data.map(item =>{
                 return {
