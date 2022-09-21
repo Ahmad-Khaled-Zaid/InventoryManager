@@ -4,7 +4,7 @@ export default function Header(props) {
         window.location.href = '/Login'
     }
     return (
-        <header className="flex justify-between p-4 bg-green-500 text-gray-50">
+        <header className="flex justify-between p-4 bg-green-500 text-gray-50 dark:bg-gray-800">
             <h1 className="text-3xl font-bold">
                 Inventer
             </h1>
@@ -16,4 +16,5 @@ export default function Header(props) {
         </header>
     )
 }
+
 

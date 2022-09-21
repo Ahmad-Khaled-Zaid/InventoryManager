@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { PieChart } from '../components/Dashboard/Chart'
@@ -30,13 +29,13 @@ export default function Dashboard() {
 
       <main className='justify-center py-2 bg-gray-100'>
         <SummaryData />
-        <div className='flex ml-64 bg-gray-100   justify-between'>
-          <div className='p-4 bg-white rounded-lg shadow-md '>
+        <div className='flex justify-between ml-64 bg-gray-100'>
+          <div className='p-4 bg-white rounded-lg shadow-md'>
             <p className='font-sans text-lg font-semibold text-gray-500'>Top Selling Items</p>
             <TopSell />
           </div>
-          {/* for the pi chart  */}
-          <div className='w-auto p-4 ml-4 bg-white rounded-lg shadow-md'>
+          
+          <div className='w-1/3 p-4 ml-4 bg-white rounded-lg shadow-md'>
             <p className='font-sans text-lg font-bold text-gray-500'>Sales By Shop</p>
             <div className='flex items-center justify-between rounded-lg'>
               <PieChart/>
@@ -47,7 +46,7 @@ export default function Dashboard() {
           </div>
 
         </div>
-        {/* for more visualization  */}
+
         <div className=''></div>
       </main>
 

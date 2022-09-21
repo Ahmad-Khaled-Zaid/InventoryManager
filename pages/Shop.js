@@ -46,10 +46,10 @@ export default function Shop() {
       <main>
       </main>
       <div class="overflow-x-auto relative  sm:rounded-lg UsersTable">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 rounded-lg">
             <tr class="bg-green-500">
-              <th scope="col" class="p-4 ">
+              <th scope="col" class="p-4 rounded-l-lg">
                 <div class="flex items-center">
                 </div>
               </th>
@@ -60,12 +60,12 @@ export default function Shop() {
                 Name
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Create By
+                Added By
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Created On
+                Added On
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-6 text-white rounded-r-lg">
                 Total Sales
               </th>
 
@@ -110,11 +110,6 @@ export default function Shop() {
               <div>
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Shop's Name</label>
                 <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="e.g eco" required />
-              </div>
-              <div>
-                {/* <label for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Added By </label>
-                <input type="Name" name="Name" id="Name" placeholder="eg. Ahmad Alnabale" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-               */}
               </div>
               <div class="flex justify-between">
                 <div class="flex items-start">

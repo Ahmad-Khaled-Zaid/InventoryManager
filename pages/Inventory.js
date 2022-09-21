@@ -38,9 +38,6 @@ export default function inventory() {
       <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
         Add Item
       </button>
-      {/* <button onClick={() => { setShowModal(true) }} type="submit" class=" adduser_inv_excel bg-green-500 text-white border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
-        Add Item (Excel)
-      </button> */}
 
       <Head>
         <title>Inventer</title>
@@ -52,38 +49,38 @@ export default function inventory() {
       <main>
       </main>
       <div class="overflow-x-auto relative  sm:rounded-lg UsersTable_inv ">
-        <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border mr-4"  >
+        <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20  border mr-4"  >
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr class="bg-green-500">
-              <th scope="col" class="p-4 ">
+              <th scope="col" class="p-4 rounded-l-lg">
                 <div class="flex items-center">
                 </div>
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Iteam Code
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Photo
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Item Name
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Item Group
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Price
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Total
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Remaining
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white">
                 Added On
               </th>
-              <th scope="col" class="py-3 px-6 text-white">
+              <th scope="col" class="py-3 px-4 text-white rounded-r-lg">
                 Added By
               </th>
               
@@ -95,32 +92,32 @@ export default function inventory() {
               if (ele.name.toLowerCase().includes(query)) {
                 return (
                   <tr key={ele.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="p-4 w-4">
+                    <td class="p-4 w-4 ">
                       <div class="flex items-center">
                       </div>
                     </td>
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {ele.code}
                     </th>
-                    <td class="py-4 px-6">
-                      <img className='items-center rounded-lg shadow-md' width={50} src={ele.photo} />
+                    <td class="py-3 px-4">
+                      <img className='items-center rounded-lg shadow-md' width={100} src={ele.photo} />
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-4">
                       {ele.name}
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-4">
                       {ele.group.name}
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-4">
                       {ele.price}$
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-4">
                       {ele.total}
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-4">
                       {ele.remaining}
                     </td>
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-4">
                       {ele.created_at}
                     </td>
                     {ele.created_by ? <td>{ele.created_by['fullname']}</td> : <td>NA</td>}

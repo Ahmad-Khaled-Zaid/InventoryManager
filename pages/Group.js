@@ -48,14 +48,14 @@ export default function Group() {
         </button>
 
         <div class="overflow-x-auto relative  sm:rounded-lg UsersTable">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
+          <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr class="bg-green-500">
                 <th scope="col" class="p-4 ">
                   <div class="flex items-center">
                   </div>
                 </th>
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-6 text-white rounded-l-lg">
                   Name
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
@@ -65,7 +65,7 @@ export default function Group() {
                   Created By
                 </th>
 
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-6 text-white rounded-r-lg">
                   Created At
                 </th>
 
@@ -128,7 +128,6 @@ export default function Group() {
         </div>
 
 
-        {/* <div className='flex justify-between mt-5 search'> */}
         <p> Users Page</p>
         <form class=" search flex items-center ">
           <label for="simple-search" class="sr-only">Search</label>
@@ -140,7 +139,6 @@ export default function Group() {
           </div>
 
         </form>
-        {/* </div> */}
       </main>
     </div >
   )
