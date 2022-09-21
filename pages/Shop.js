@@ -11,12 +11,12 @@ export default function Shop() {
   const [data, setData] = useState([])
   const submitForm = (e) => {
     console.log(e)
-    axios.post("http://inventer-ms.herokuapp.com/app/shop", { name: e.target[0].value}, getAuthToken())
+    axios.post("https://inventer-ms.herokuapp.com/app/shop", { name: e.target[0].value}, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://inventer-ms.herokuapp.com/app/sales-by-shop', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/sales-by-shop', headers)
     console.log(response)
     setData(response.data)
     console.log(data)

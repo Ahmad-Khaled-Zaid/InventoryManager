@@ -14,13 +14,13 @@ export default function inventory() {
   let itemGroups = groups.map(ele => ele.name)
   const submitForm = async (e) => {
     let x = itemGroups.indexOf(e.target[2].value) + 1
-    axios.post("http://inventer-ms.herokuapp.com/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value }, getAuthToken())
+    axios.post("https://inventer-ms.herokuapp.com/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value }, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://inventer-ms.herokuapp.com/app/inventory', headers)
-    let response2 = await axios.get('http://inventer-ms.herokuapp.com/app/group', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/inventory', headers)
+    let response2 = await axios.get('https://inventer-ms.herokuapp.com/app/group', headers)
 
     setData(response.data.results)
     setGroups(response2.data.results)

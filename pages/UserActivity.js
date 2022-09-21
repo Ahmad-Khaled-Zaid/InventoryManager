@@ -9,7 +9,7 @@ export default function UserActivity() {
 
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://inventer-ms.herokuapp.com/user/activities-log', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/user/activities-log', headers)
     setData(response.data.results)
 
   }

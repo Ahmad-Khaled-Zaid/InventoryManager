@@ -9,12 +9,12 @@ import { getAuthToken } from '../utils/functions'
 
 export default function User() {
   const submitForm = (e) => {
-    axios.post("http://inventer-ms.herokuapp.com/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
+    axios.post("https://inventer-ms.herokuapp.com/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://inventer-ms.herokuapp.com/user/users', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/user/users', headers)
     setData(response.data.results)
   }
   const [data, setData] = useState([])

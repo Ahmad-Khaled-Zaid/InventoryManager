@@ -9,7 +9,7 @@ export default function Invoice() {
 
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://inventer-ms.herokuapp.com/app/invoice', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/invoice', headers)
     setData(response.data.results)
 
   }

@@ -20,7 +20,7 @@ export const authHandler = async () => {
         return null
     }
 
-    const response = await axios.get("http://127.0.0.1:8000/user/me", headers).catch(e => { })
+    const response = await axios.get("https://inventer-ms.herokuapp.com/user/me", headers).catch(e => { })
     if (response) {
         return response.data
         // console.log(response)

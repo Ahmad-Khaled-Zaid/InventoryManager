@@ -22,7 +22,7 @@ export function PieChart() {
 
   const getdata = async () => {
     let headers = getAuthToken()
-    let response = await axios.get('http://inventer-ms.herokuapp.com/app/sales-by-shop', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/sales-by-shop', headers)
     console.log(response.data)
     if (response && label.length <= 0) {
       const result = await response.data.map(item => {
