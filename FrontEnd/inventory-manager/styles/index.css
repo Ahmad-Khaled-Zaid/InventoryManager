@@ -80,4 +80,44 @@ html,body{
     font-size: 20px;
     color: rgb(220, 0, 0);
   }
+  .social{
+    position: absolute;
+    top: 550px;
+    right: 700px;
+  }
+  .s-app{
+    color: green;
+    background-color: white;
+  }
+  .s-app:hover{
+    color: white;
+    background-color: green ;
+  }
 
+  .journey{
+    position: absolute;
+    top:50px
+  }
+  .bar{
+    position: relative;
+    bottom:60px; 
+}
+.Cont{
+  position: relative;
+  top:130px
+}
+.container{
+  position: relative;
+}
+.logo{
+  position: absolute;
+  width: 450px;
+  top: 0;
+  right: 0;
+  height:448px ;
+  /* border-radius: 2px */
+}
+.title{
+  position: absolute;
+  left: 500px;
+}
