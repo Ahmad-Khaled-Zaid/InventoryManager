@@ -45,7 +45,7 @@ export default function SummaryData() {
     const getSummaryData = async () => {
 
         let headers = getAuthToken()
-        let response = await axios.get('http://inventer-ms.herokuapp.com/app/summary', headers)
+        let response = await axios.get('https://inventer-ms.herokuapp.com/app/summary', headers)
         
         if (response) {
             const result = response.data
