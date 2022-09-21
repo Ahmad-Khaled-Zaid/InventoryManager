@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut, Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { getAuthToken } from '../../utils/functions';
 import axios from 'axios'
 
@@ -12,17 +12,15 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export function PieChart() {
   const [label, setLabel] = useState([])
   const [total, setTotal] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-
+ 
   useEffect(() => {
     label.length <= 0 && getdata()
-    console.log("Hi Ashrf")
   }, [])
-
+  
 
   const getdata = async () => {
     let headers = getAuthToken()
-    let response = await axios.get('http://127.0.0.1:8000/app/sales-by-shop', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/sales-by-shop', headers)
     console.log(response.data)
     if (response && label.length <= 0) {
       const result = await response.data.map(item => {
@@ -63,5 +61,18 @@ export function PieChart() {
 
   };
 
-  return <Doughnut data={data} className="p-4 shadow-md" />;
+  return (
+    <>
+      <div className='justify-between'>
+        <Doughnut data={data} className="p-4 shadow-md" />
+        
+        <div>
+          <p> Purchase </p>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+  </>
+  )
 }

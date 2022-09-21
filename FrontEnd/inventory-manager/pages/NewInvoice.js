@@ -5,25 +5,59 @@ import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import { getAuthToken } from '../utils/functions'
 
+const t = new Date();
+const date = ('0' + t.getDate()).slice(-2);
+const month = ('0' + (t.getMonth() + 1)).slice(-2);
+const year = t.getFullYear();
+const time = `${date}/${month}/${year}`;
 
 export default function inventory() {
-
   const [data, setData] = useState([])
   const [groups, setGroups] = useState([])
-  let [counter, setCounter] = useState(0);
+  let [invoiceData, setInvoiceData] = useState([])
+  const [query, setQuery] = useState("")
+  const [ tot , setTot ] = useState(0)
   let itemGroups = groups.map(ele => ele.name)
-  const submitForm = async (e) => {
-    let x = itemGroups.indexOf(e.target[2].value) + 1
-    axios.post("http://127.0.0.1:8000/app/inventory", { name: e.target[0].value, total: e.target[1].value, group_id: x, price: e.target[3].value }, getAuthToken())
-  }
-  const [showModal, setShowModal] = useState(false)
+ 
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://127.0.0.1:8000/app/inventory', headers)
-    let response2 = await axios.get('http://127.0.0.1:8000/app/group', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/inventory', headers)
+    let response2 = await axios.get('https://inventer-ms.herokuapp.com/app/group', headers)
 
     setData(response.data.results)
     setGroups(response2.data.results)
+  }
+
+  const invoice = (e, id) => {
+    e.preventDefault()
+   
+    data.filter(value => {
+      if (value.id == id) {
+        value["amount"] = e.target.number.value
+        value["total_price"] = e.target.number.value * value.price
+        console.log(value)
+        return (
+          setInvoiceData(prev => [value, ...prev]),
+          setTot(tot + value.total_price)
+        )
+      }
+    })
+  }
+
+  const handleRemove = (e, idx) =>{
+    e.preventDefault()
+    console.log(idx)
+    setInvoiceData([])
+    setTot(0)
+    invoiceData.forEach((value, index)=>{
+      console.log(index, idx)
+      if(value.id != idx){
+        setInvoiceData(prev => [value, ...prev])
+      }else{
+        setTot(tot - value.total_price)
+        
+      }
+    })
   }
 
   useEffect(() => {
@@ -31,7 +65,6 @@ export default function inventory() {
   }, [data, groups])
 
 
-  const [query, setQuery] = useState("")
   return (
     <div >
       <Head>
@@ -43,37 +76,34 @@ export default function inventory() {
       <main>
         <Header />
         <SideBar />
-        <div class="overflow-x-auto relative  sm:rounded-lg UsersTable_inv ">
-          <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border "  >
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div class="w-11/12 flex relative  sm:rounded-lg UsersTable_inv rounded-lg">
+          <table class="text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border w-2 rounded-lg "  >
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 rounded-lg">
               <tr class="bg-green-500">
-                <th scope="col" class="p-4 ">
+                <th scope="col" class="p-4 rounded-l-lg">
                   <div class="flex items-center">
                   </div>
                 </th>
-                <th scope="col" class="py-3 px-6 text-white">
-                  Iteam Code
-                </th>
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-4 text-white">
                   Photo
                 </th>
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-4 text-white">
                   Item Name
                 </th>
 
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-4 text-white">
                   Group
                 </th>
 
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-4 text-white">
                   Price
                 </th>
 
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-4 text-white">
                   Remaining
                 </th>
 
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-4 text-white rounded-r-lg">
                   Actions
                 </th>
               </tr>
@@ -84,40 +114,36 @@ export default function inventory() {
                 if (ele.name.toLowerCase().includes(query)) {
                   return (
                     <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td class="p-4 w-4">
+                      <td class="p-4 w-4 ">
                         <div class="flex items-center">
                         </div>
                       </td>
-                      <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {ele.code}
-                      </th>
-                      <td class="py-4 px-6">
+                      <td class="py-3 px-4">
                         <img className='items-center rounded-lg shadow-md' width={50} src={ele.photo} />
                       </td>
-                      <td class="py-4 px-6">
+                      <td class="py-3 px-4">
                         {ele.name}
                       </td>
-                      <td class="py-4 px-6">
+                      <td class="py-3 px-4">
                         {ele.group.name}
                       </td>
-                      <td class="py-4 px-6">
+                      <td class="py-3 px-4">
                         {ele.price} $
                       </td>
-                      <td class="py-4 px-6">
+                      <td class="py-3 px-4">
                         {ele.remaining}
                       </td>
-                      <td class="py-4 px-6">
+                      <td class="py-3 px-4">
                         <div class="custom-number-input h-10 w-32">
 
-                          <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                            <input type="number" placeholder="0" class="focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number"></input>
-                            <button class="bg-green-600 text-white hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded cursor-pointer ml-2">
+                          <form onSubmit={(e) => { invoice(e, ele.id) }} class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                            <input type="number" placeholder="0" class="focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" id="number"></input>
+                            <button type='submit' class="bg-green-600 text-white hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded cursor-pointer ml-2">
                               <span class="m-auto font-bold py-2 px-5">Add</span>
                             </button>
-                          </div>
+                          </form>
                         </div>
                       </td>
-
                     </tr>
                   )
                 }
@@ -125,11 +151,82 @@ export default function inventory() {
 
             </tbody>
           </table>
+          <div className='w-1/12 m-3'>
+            <table class=" w-8/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border "  >
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr class="bg-gray-100">
+                  <th scope="col" class="p-4 ">
+                    <div class="flex items-center">
+                    </div>
+                  </th>
+                  <th scope="col" class="py-3 px-4 text-gray-600">
+                    Item Name
+                  </th>
+                  <th scope="col" class="py-3 px-4 text-gray-600">
+                    Item price
+                  </th>
+                  <th scope="col" class="py-3 px-4 text-gray-600">
+                    No. of Items
+                  </th>
+                  <th scope="col" class="py-3 px-4 text-gray-600">
+                    Total
+                  </th>
+                  <th scope="col" class="py-3 px-4 text-gray-600">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {invoiceData.map((ele, index) => {
+
+                  if (ele.name.toLowerCase().includes(query)) {
+                    return (
+                      <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="p-4 w-4">
+                          <div class="flex items-center">
+                          </div>
+                        </td>
+                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {ele.name}
+                        </th>
+                        <td class="py-3 px-4">
+                          {ele.price}
+                        </td>
+                        <td class="py-3 px-4">
+                          {ele.amount}
+                        </td>
+                        <td class="py-3 px-4">
+                          {ele.total_price}
+                        </td>
+                        <td class="py-3 px-4">
+                          <div class="custom-number-input">
+                            <form onSubmit={(e)=>handleRemove(e,ele.id)} class="flex flex-row py-2 px-2 rounded-lg relative bg-transparent mt-1">
+                              <button type="submit" class="bg-gray-100 text-red-700 hover:text-gray-700 hover:bg-gray-400 rounded cursor-pointer ml-2">
+                                <span class="m-auto font-bold py-2 px-5">X</span>
+                              </button>
+                            </form>
+
+                          </div>
+                        </td>
+                      </tr>
+                    )
+                  }
+                })}
+
+              </tbody>
+            </table>
+            <div className='justify-between'>
+                <div>Date : {time}</div>
+                <div>Total: {tot}</div>
+              </div>
+          </div>
+          <div>Name</div>
+
 
         </div>
 
 
-        
+
         <form class=" search_inv flex items-center ">
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative ">

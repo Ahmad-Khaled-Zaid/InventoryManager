@@ -18,7 +18,7 @@ function Login() {
     let router = useRouter()
     const onSubmit = async (e) => {
         e.preventDefault()
-        let response = await axios.post('http://127.0.0.1:8000/user/login/', { email: e.target[0].value, password: e.target[1].value })
+        let response = await axios.post('https://inventer-ms.herokuapp.com/user/login/', { email: e.target[0].value, password: e.target[1].value })
 
         if (response) {
             localStorage.setItem("accessToken", response.data.access)
@@ -39,17 +39,9 @@ function Login() {
                         <div className="py-10">
                             <h2 className="mb-2 text-3xl font-bold text-green-500">Sign in to Account</h2>
                             <div className="inline-block w-10 mb-2 border-t-2 border-green-500"></div>
-                            {/* <div className="flex justify-center my-2">
-                                <a href="#" className='p-3 mx-1 border-2 border-gray-200 rounded-full '>
-                                    <FaFacebook className='text-sm' />
-                                </a>
-                                <a href="#" className='p-3 mx-1 border-2 border-gray-200 rounded-full '>
-                                    <FaLinkedin className='text-sm' />
-                                </a>
-                                <a href="#" className='p-3 mx-1 border-2 border-gray-200 rounded-full '>
-                                    <FaGoogle className='text-sm' />
-                                </a>
-                            </div> */}
+                            <div className="flex justify-center my-2">
+                                <img className='items-center rounded-lg shadow-md' width={50} src='blob:https://web.whatsapp.com/cee498ee-0996-4f04-bf12-42a1f1ec7c1f'/>
+                            </div>
 
                             <p className='my-3 text-gray-400'>or use your email account </p>
                             <form className='flex flex-col items-center' onSubmit={onSubmit}>

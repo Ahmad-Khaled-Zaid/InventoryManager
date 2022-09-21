@@ -9,12 +9,12 @@ import { getAuthToken } from '../utils/functions'
 
 export default function User() {
   const submitForm = (e) => {
-    axios.post("http://127.0.0.1:8000/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
+    axios.post("https://inventer-ms.herokuapp.com/user/create-user", { email: e.target[0].value, fullname: e.target[1].value, role: e.target[2].value }, getAuthToken())
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://127.0.0.1:8000/user/users', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/user/users', headers)
     setData(response.data.results)
   }
   const [data, setData] = useState([])
@@ -43,24 +43,27 @@ export default function User() {
       <main>
       </main>
       <div class="overflow-x-auto relative  sm:rounded-lg UsersTable">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
+        <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr class="bg-green-500">
-              <th scope="col" class="p-4 ">
+              <th scope="col" class="p-4 rounded-l-lg ">
                 <div class="flex items-center">
                 </div>
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Email
+                Id
               </th>
               <th scope="col" class="py-3 px-6 text-white">
                 Name
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Role
+                Email
               </th>
               <th scope="col" class="py-3 px-6 text-white">
-                Actions
+                Role
+              </th>
+              <th scope="col" class="py-3 px-6 text-white rounded-r-lg">
+                Created At
               </th>
             </tr>
           </thead>
@@ -75,18 +78,22 @@ export default function User() {
                       </div>
                     </td>
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {ele.email}
+                      {ele.id}
                     </th>
                     <td class="py-4 px-6">
                       {ele.fullname}
                     </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {ele.email}
+                    </th>
+
                     <td class="py-4 px-6">
                       {ele.role}
                     </td>
-                    <td class="flex items-center py-4 px-6 space-x-3">
-                      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                      <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                    <td class="py-4 px-6">
+                      {ele.created_at}
                     </td>
+
                   </tr>
                 )
               }
@@ -107,7 +114,6 @@ export default function User() {
 
                 <label for="Role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 mt-5 ">Role</label>
                 <select name="Role" id="Role" class=" rounded px-20 py-2  border-2">
-                  <option value="Admin">Admin</option>
                   <option value="sale">Sale</option>
                   <option value="creator">creator</option>
                 </select>
@@ -126,7 +132,6 @@ export default function User() {
       </div>
 
 
-      {/* <div className='flex justify-between mt-5 search'> */}
       <p> Users Page</p>
       <form class=" search flex items-center ">
         <label for="simple-search" class="sr-only">Search</label>
@@ -136,7 +141,6 @@ export default function User() {
           </div>
           <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
         </div>
-        {/* <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-48 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onChange={(e) => setQuery(e.target.value)} /> */}
       </form>
 
     </div >

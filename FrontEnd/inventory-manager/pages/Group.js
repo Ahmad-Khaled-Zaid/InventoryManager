@@ -11,16 +11,15 @@ export default function Group() {
   const submitForm = (e) => {
     // e.preventDefault()
     console.log(e)
-    axios.post("http://127.0.0.1:8000/app/group", { name: e.target[0].value, belongs_to: e.target[1].value }, getAuthToken())
+    axios.post("https://inventer-ms.herokuapp.com/app/group", { name: e.target[0].value }, getAuthToken())
     console.log(data)
 
   }
   const [showModal, setShowModal] = useState(false)
   const usersData = async () => {
     const headers = getAuthToken()
-    let response = await axios.get('http://127.0.0.1:8000/app/group', headers)
+    let response = await axios.get('https://inventer-ms.herokuapp.com/app/group', headers)
     setData(response.data.results)
-
   }
   const [data, setData] = useState([])
   useEffect(() => {
@@ -49,28 +48,27 @@ export default function Group() {
         </button>
 
         <div class="overflow-x-auto relative  sm:rounded-lg UsersTable">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
+          <table class="w-11/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border"  >
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr class="bg-green-500">
                 <th scope="col" class="p-4 ">
                   <div class="flex items-center">
                   </div>
                 </th>
-                <th scope="col" class="py-3 px-6 text-white">
+                <th scope="col" class="py-3 px-6 text-white rounded-l-lg">
                   Name
-                </th>
-                <th scope="col" class="py-3 px-6 text-white">
-                  Belongs To
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
                   Total Items
                 </th>
                 <th scope="col" class="py-3 px-6 text-white">
+                  Created By
+                </th>
+
+                <th scope="col" class="py-3 px-6 text-white rounded-r-lg">
                   Created At
                 </th>
-                <th scope="col" class="py-3 px-6 text-white">
-                  Actions
-                </th>
+
               </tr>
             </thead>
             <tbody>
@@ -87,18 +85,15 @@ export default function Group() {
                         {ele.name}
                       </th>
                       <td class="py-4 px-6">
-                        {ele.belongs_to}
+                        {ele.total_items}
                       </td>
                       <td class="py-4 px-6">
-                        {ele.total_items}
+                        {ele.created_by.fullname}
                       </td>
                       <td class="py-4 px-6">
                         {ele.created_at}
                       </td>
-                      <td class="flex items-center py-4 px-6 space-x-3">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-                      </td>
+
                     </tr>
                   )
                 }
@@ -133,7 +128,6 @@ export default function Group() {
         </div>
 
 
-        {/* <div className='flex justify-between mt-5 search'> */}
         <p> Users Page</p>
         <form class=" search flex items-center ">
           <label for="simple-search" class="sr-only">Search</label>
@@ -145,7 +139,6 @@ export default function Group() {
           </div>
 
         </form>
-        {/* </div> */}
       </main>
     </div >
   )
