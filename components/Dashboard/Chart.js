@@ -7,7 +7,7 @@ import axios from 'axios'
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-
+ 
 
 export function PieChart() {
   const [label, setLabel] = useState([])
