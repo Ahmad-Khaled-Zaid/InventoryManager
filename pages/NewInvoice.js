@@ -13,24 +13,24 @@ const time = `${date}/${month}/${year}`;
 
 export default function inventory() {
   const [data, setData] = useState([])
-  const [groups, setGroups] = useState([])
+  const [shop, setShop] = useState([])
   let [invoiceData, setInvoiceData] = useState([])
   const [query, setQuery] = useState("")
-  const [ tot , setTot ] = useState(0)
-  let itemGroups = groups.map(ele => ele.name)
- 
+  const [tot, setTot] = useState(0)
+  let itemShop = shop.map(ele => ele.name)
+
   const usersData = async () => {
     const headers = getAuthToken()
     let response = await axios.get('https://inventer-ms.herokuapp.com/app/inventory', headers)
-    let response2 = await axios.get('https://inventer-ms.herokuapp.com/app/group', headers)
+    let response2 = await axios.get('https://inventer-ms.herokuapp.com/app/shop', headers)
 
     setData(response.data.results)
-    setGroups(response2.data.results)
+    setShop(response2.data.results)
   }
 
   const invoice = (e, id) => {
     e.preventDefault()
-   
+
     data.filter(value => {
       if (value.id == id) {
         value["amount"] = e.target.number.value
@@ -44,25 +44,28 @@ export default function inventory() {
     })
   }
 
-  const handleRemove = (e, idx) =>{
+  const handleRemove = (e, idx) => {
     e.preventDefault()
     console.log(idx)
     setInvoiceData([])
     setTot(0)
-    invoiceData.forEach((value, index)=>{
+    invoiceData.forEach((value, index) => {
       console.log(index, idx)
-      if(value.id != idx){
+      if (value.id != idx) {
         setInvoiceData(prev => [value, ...prev])
-      }else{
+      } else {
         setTot(tot - value.total_price)
-        
+
       }
     })
   }
-
+  const clearData = (e) =>{
+    setInvoiceData([])
+    setTot(0)
+  }
   useEffect(() => {
     data.length <= 0 && usersData()
-  }, [data, groups])
+  }, [data, shop])
 
 
   return (
@@ -151,27 +154,42 @@ export default function inventory() {
 
             </tbody>
           </table>
-          <div className='w-1/12 m-3'>
-            <table class=" w-8/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-20 border-collapse border "  >
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr class="bg-gray-100">
-                  <th scope="col" class="p-4 ">
-                    <div class="flex items-center">
-                    </div>
+          <div className='w-full p-5 m-3 border-2'>
+            <div className='flex justify-between'>
+              <img className='items-center rounded-lg' width={200} src="https://i.pinimg.com/originals/19/85/44/1985441f56370781da9b7261f5e0995e.jpg" />
+              <div className='flex justify-between px-1 pt-2 mt-6 font-serif font-semibold border-2 w-36'>
+                <p>Invoice</p>
+                <p> فاتورة </p>
+              </div>
+            </div>
+            <div className='flex '>
+              <p className='mt-2 font-semibold'>Name: </p>
+              <select class=" rounded px-3 py-2  border-2 mx-2 mb-1">
+                {shop.map((ele) => {
+                  return <option value={ele.name}>{ele.name}</option>
+                })
+                }
+              </select>
+            </div>
+            <table class=" w-8/12 text-sm text-left text-gray-500 dark:text-gray-400 mt-2 border-collapse border "  >
+              <thead class="text-xs text-gray-50 uppercase bg-green-500 dark:bg-gray-700 dark:text-gray-400">
+                <tr class="bg-green-500">
+                  <th scope="col" >
+
                   </th>
-                  <th scope="col" class="py-3 px-4 text-gray-600">
+                  <th scope="col" class="py-3 px-4">
                     Item Name
                   </th>
-                  <th scope="col" class="py-3 px-4 text-gray-600">
+                  <th scope="col" class="py-3 px-4">
                     Item price
                   </th>
-                  <th scope="col" class="py-3 px-4 text-gray-600">
+                  <th scope="col" class="py-3 px-4">
                     No. of Items
                   </th>
-                  <th scope="col" class="py-3 px-4 text-gray-600">
+                  <th scope="col" class="py-3 px-4">
                     Total
                   </th>
-                  <th scope="col" class="py-3 px-4 text-gray-600">
+                  <th scope="col" class="py-3 px-4">
                     Actions
                   </th>
                 </tr>
@@ -200,7 +218,7 @@ export default function inventory() {
                         </td>
                         <td class="py-3 px-4">
                           <div class="custom-number-input">
-                            <form onSubmit={(e)=>handleRemove(e,ele.id)} class="flex flex-row py-2 px-2 rounded-lg relative bg-transparent mt-1">
+                            <form onSubmit={(e) => handleRemove(e, ele.id)} class="flex flex-row py-2 px-2 rounded-lg relative bg-transparent mt-1">
                               <button type="submit" class="bg-gray-100 text-red-700 hover:text-gray-700 hover:bg-gray-400 rounded cursor-pointer ml-2">
                                 <span class="m-auto font-bold py-2 px-5">X</span>
                               </button>
@@ -215,13 +233,15 @@ export default function inventory() {
 
               </tbody>
             </table>
-            <div className='justify-between'>
-                <div>Date : {time}</div>
-                <div>Total: {tot}</div>
-              </div>
-          </div>
-          <div>Name</div>
+            <div className='flex justify-between my-4'>
+              <div className='flex justify-between mr-10 font-semibold'>Date : {time}</div>
+              <div className='flex justify-between ml-10 font-semibold'>Total: {tot}</div>
 
+            </div>
+            <button type="submit" onSubmit={(e) => { clearData(e) }} class=" bg-green-500 text-white border-2 border-green-500 rounded-lg px-5 py-2 font-semibold hover:bg-white hover:text-green-500 hover:border-green ">
+              Add Invoice
+            </button>
+          </div>
 
         </div>
 

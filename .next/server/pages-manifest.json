@@ -1,0 +1,16 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/Group": "pages/Group.html",
+  "/Home": "pages/Home.html",
+  "/Inventory": "pages/Inventory.html",
+  "/Invoices": "pages/Invoices.html",
+  "/Login": "pages/Login.html",
+  "/NewInvoice": "pages/NewInvoice.html",
+  "/Shop": "pages/Shop.html",
+  "/UserActivity": "pages/UserActivity.html",
+  "/Users": "pages/Users.html",
+  "/": "pages/index.html",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}

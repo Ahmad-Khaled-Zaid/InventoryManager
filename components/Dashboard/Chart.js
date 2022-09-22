@@ -7,12 +7,10 @@ import axios from 'axios'
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
- 
-
 export function PieChart() {
   const [label, setLabel] = useState([])
   const [total, setTotal] = useState([])
- 
+
   useEffect(() => {
     label.length <= 0 && getdata()
   }, [])
@@ -25,9 +23,10 @@ export function PieChart() {
     if (response && label.length <= 0) {
       const result = await response.data.map(item => {
         return (
+          
           setLabel(prev => [item.name, ...prev]),
-          setTotal(prev => [item.amount_total, ...prev]),
-          console.log(11, label, total)
+          setTotal(prev => [item.amount_total, ...prev])
+          
         )
       })
 
@@ -65,13 +64,6 @@ export function PieChart() {
     <>
       <div className='justify-between'>
         <Doughnut data={data} className="p-4 shadow-md" />
-        
-        <div>
-          <p> Purchase </p>
-          <div>
-            
-          </div>
-        </div>
       </div>
   </>
   )
