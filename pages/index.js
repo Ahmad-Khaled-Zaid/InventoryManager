@@ -40,9 +40,6 @@ export default function Dashboard() {
             <div className='flex items-center justify-between rounded-lg'>
               <PieChart/>
             </div>
-            <div>
-              <p> Pr </p>
-            </div>
           </div>
 
         </div>

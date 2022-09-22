@@ -34,7 +34,7 @@ export default function TopSell() {
                         <div className='mx-auto mb-3 rounded-lg'>
                             <img className='items-center mx-auto rounded-lg shadow-md' width={100} src={item.photo} />
                         </div>
-                        <div className='font-sans text-xs font-bold text-gray-500'>{item.name}</div>
+                        <div className='mb-2 font-sans text-xs font-bold text-gray-500'>{item.name}</div>
                         <div className='font-sans text-sm font-bold'>{item.total}</div>
                     </div>)
             }
